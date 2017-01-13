@@ -1,18 +1,143 @@
 <html>
 	<head>
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre" rel="stylesheet">
+
+<style>
+	img.nav-img {
+		border: 10px solid darkblue;
+		border-radius: 10px;
+		max-height: 250px;
+		max-width: 250px;
+		background: white;
+	}
+
+	/*div.large-nav {
+		border: 3px solid blue;
+
+	}*/
+
+	h1 {
+		/*color: pink;*/
+		font-family: 'Averia Serif Libre', cursive;
+		font-size: 4em
+	}
+
+	h2 {
+		font-family: 'Averia Serif Libre', cursive;
+	}
+
+	div.header {
+		/*padding: 2em;*/
+	}
+
+	div.middle-nav {
+		background: lightgrey;
+		padding: 3em;
+		margin: 2em;
+		border-radius: 10px;
+	}
+
+	div.blurb {
+		font-size: 1.5em;
+		font-family: 'Averia Serif Libre', cursive;
+	}
+
+	body {
+		padding-bottom: 3em;
+		font-family: 'Averia Serif Libre', cursive;
+		font-size: 1.5em;
+	}
+
+	div.connect div.connect-block {
+		border: 2px solid blue;
+	}
+
+	div.connect div div {
+		background: lightblue;
+		padding: 1em;
+	}
+
+	div.connect div div:first-child {
+		/*background: yellow;*/
+		border-bottom-left-radius: 10px;
+		border-top-left-radius: 10px;
+	}
+
+	div.connect div div:last-child {
+		/*background: yellow;*/
+		border-bottom-right-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	div.connect div div img {
+		max-width: 50px
+	}
+
+</style>
+
+
+
 	</head>
 	<body>
-	<h1>The Real Katie!</h1>
-	
-		
+	<div class="container theme-showcase">
+		<div class="row">
+			<div class="col-lg-12 text-center header">
+				<h1>The Real Katie!</h1>
+			</div>
+		</div>
+
+		<div class="row middle-nav">
+			<div class="col-lg-4 text-center center-block large-nav">
+				<img src="/static/img/bookshelf.png" class="img-responsive nav-img center-block">
+				<h2>Writing</h2>
+			</div>
+			
+			<div class="col-lg-4 text-center center-block large-nav">
+				<img src="/static/img/talk.png" class="img-responsive nav-img
+					center-block">
+				<h2>Talking</h2>
+			</div>
+			
+			<div class="col-lg-4 text-center center-block large-nav">
+				<img src="/static/img/apple.png" class="img-responsive nav-img
+					center-block">
+				<h2>Teaching</h2>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 blurb">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			
+			</div>
+		</div>
+		<div class="row connect">
+			<h2 class="text-center">Connect with me</h2>
+			<div class="row text-center">
+				<div class="col-lg-2 col-lg-offset-3">
+					<img src="static/img/twitter.png">Twitter
+				</div>
+				<div class="col-lg-2">
+					<img src="static/img/github.png">Github</div>
+				<div class="col-lg-2">
+					<img src="static/img/youtube.png">YouTube</div>
+			</div>
+		</div>
+		</div>
 	</body>	
 
 </html>
