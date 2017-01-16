@@ -1,0 +1,77 @@
+img.nav-img {
+        border: 10px solid #3E877D;
+        border-radius: 10px;
+        max-height: 250px;
+        max-width: 250px;
+        background: white;
+}
+
+/*div.large-nav {
+    border: 3px solid blue;
+
+}*/
+
+h1 {
+    color: #CD3C9B;
+    font-family: 'Averia Serif Libre', cursive;
+    font-size: 4em
+}
+
+h2 {
+    font-family: 'Averia Serif Libre', cursive;
+}
+
+div.header {
+    /*padding: 2em;*/
+}
+
+div.middle-nav {
+    background: #6eded7;
+    padding: 3em;
+    margin: 2em;
+    border-radius: 10px;
+}
+
+div.blurb {
+    font-size: 1.5em;
+    font-family: 'Averia Serif Libre', cursive;
+}
+
+body {
+    padding-bottom: 3em;
+    font-family: 'Averia Serif Libre', cursive;
+    font-size: 1.5em;
+    color: #133C57;
+}
+
+div.connect div.connect-block {
+    border: 2px solid #133C57;
+}
+
+div.connect div div {
+    background: #00B5AA;
+    padding: 1em;
+    color: #FFF;
+}
+
+div.connect img {
+    background: #FFF;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+div.connect div div:first-child {
+    /*background: yellow;*/
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+div.connect div div:last-child {
+    /*background: yellow;*/
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+div.connect div div img {
+    max-width: 50px
+}
