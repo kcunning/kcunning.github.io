@@ -79,3 +79,7 @@ div.connect div div:last-child {
 div.connect div div img {
     max-width: 50px
 }
+
+div.connect a {
+    color: #FFF;
+}
