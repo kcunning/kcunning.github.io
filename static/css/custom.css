@@ -21,6 +21,14 @@ h2 {
     font-family: 'Averia Serif Libre', cursive;
 }
 
+p {
+    font-size: 1.3em;
+}
+
+li {
+    font-size: 1.3em;
+}
+
 div.header {
     /*padding: 2em;*/
 }
@@ -74,4 +82,8 @@ div.connect div div:last-child {
 
 div.connect div div img {
     max-width: 50px
+}
+
+div.connect a {
+    color: #FFF;
 }
