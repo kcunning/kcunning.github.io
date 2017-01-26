@@ -34,6 +34,24 @@ li {
     font-size: 1.3em;
 }
 
+.navbar-default {
+    background: #3E877D;
+    box-shadow: none;
+    color: #fff;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-brand:hover {
+    text-decoration: underline;
+}
+
 div.header {
     /*padding: 2em;*/
 }
@@ -71,6 +89,7 @@ div.connect img {
     background: #FFF;
     border-radius: 5px;
     margin-right: 10px;
+    border-width: 0px;
 }
 
 div.connect div div:first-child {
@@ -91,4 +110,33 @@ div.connect div div img {
 
 div.connect a {
     color: #FFF;
+}
+
+div.footer {
+    padding-bottom: 0em;
+    margin-bottom: -3em;
+    margin-top: 2em;
+    padding: 1em;
+    background: #00B5AA;
+    color: #FFF;
+}
+
+div.footer a {
+    text-decoration: underline;
+    color: #FFF;
+}
+
+div.footer div {
+    /*padding-top: .5em;*/
+}
+
+div.footer img {
+    max-height: 1em;
+    background-color: #fff;
+    border-radius: 3px;
+    margin-right: 3px;
+}
+
+div.footer a img {
+    text-decoration: none;
 }
