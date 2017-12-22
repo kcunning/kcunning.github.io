@@ -16,6 +16,11 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>/blog/first.html</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
         <loc>/talking/index.html</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>

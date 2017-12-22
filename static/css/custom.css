@@ -4,12 +4,44 @@ img.nav-img {
         /*max-height: 250px;*/
         /*max-width: 250px;*/
         background: white;
+        padding: 1em;
 }
 
 /*div.large-nav {
     border: 3px solid blue;
 
 }*/
+
+div.large-nav a  {
+    padding: .5em;
+    text-decoration: none
+}
+
+div.large-nav a h2 {
+    padding: .5em;
+    border-radius: .5em
+}
+
+
+div.large-nav a:hover h2 {
+    background-color: white;
+    color: #CD3C9B;
+}
+
+div.large-nav a:hover img {
+    border: 10px solid #CD3C9B;
+}
+
+div.connect-item a {
+    padding: 1.5em;
+}
+
+div.connect-item a:hover {
+    background-color: white;
+    border-radius: 5px;
+    color: #133C57;
+    text-decoration: none;
+}
 
 h1 {
     color: #CD3C9B;
