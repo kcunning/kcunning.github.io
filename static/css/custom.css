@@ -1,3 +1,15 @@
+.navbar-default a.navbar-brand {
+    font-size: 2em;
+    border-radius: 1em;
+    background-color: #00B5AA;
+    color: white;
+}
+
+.navbar-default a.navbar-brand:hover {
+    background-color: white;
+}
+
+
 img.nav-img {
         border: 10px solid #3E877D;
         border-radius: 10px;
@@ -19,7 +31,8 @@ div.large-nav a  {
 
 div.large-nav a h2 {
     padding: .5em;
-    border-radius: .5em
+    border-radius: .5em;
+    margin: .5em .5em 0 .5em;
 }
 
 
@@ -72,15 +85,12 @@ li {
     color: #fff;
 }
 
-.navbar-default .navbar-brand,
 .navbar-default .navbar-nav>li>a,
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-brand:hover {
+.navbar-default .navbar-nav>li>a:hover {
     color: #fff;
 }
 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-brand:hover {
+.navbar-default .navbar-nav>li>a:hover {
     text-decoration: underline;
 }
 
@@ -90,8 +100,8 @@ div.header {
 
 div.middle-nav {
     background: #6eded7;
-    padding: 3em;
-    margin: 2em;
+    padding: 1em;
+    margin: 0 2em 2em 2em;
     border-radius: 10px;
 }
 
@@ -171,4 +181,13 @@ div.footer img {
 
 div.footer a img {
     text-decoration: none;
+}
+
+button.btn {
+    margin-bottom: .5em;
+    min-width: 10em;
+    font-size: 1.3em;
+    background-image: none;
+    background-color: #CD3C9B;
+    border: none;
 }
