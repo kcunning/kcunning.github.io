@@ -113,20 +113,26 @@
 			setTimeout(function () {
 				loops++;
 				var btns = document.getElementsByClassName('symbol');
-				var colors = ["blue", "aliceblue", "aqua", "blueviolet",
-					"Indigo", "purple", "slateblue", "rebeccapurple",
-					"steelblue", "slategrey"]
-				var r = getRandomInt(btns.length);
-				var c = getRandomInt(colors.length);
-				btns[r].setAttribute("style", "background-color:" + colors[c])
-				if (loops <= 30) {
+				// var colors = ["blue", "aliceblue", "aqua", "blueviolet",
+				// 	"Indigo", "purple", "slateblue", "rebeccapurple",
+				// 	"steelblue", "slategrey"]
+				var colors = ['DarkRed', 'FireBrick', 'Red', 'Crimson', 'IndianRed', 
+					'OrangeRed', 'Tomato', 'DarkOrange', 'Maroon', 'Brown', ]
+				// var r = getRandomInt(btns.length);
+				// var c = getRandomInt(colors.length);
+				// btns[r].setAttribute("style", "background-color:" + colors[c])
+				for (r=0;r<btns.length;r++) {
+					var c = getRandomInt(colors.length);
+					btns[r].setAttribute("style", "background-color:" + colors[c])
+				}
+				if (loops <= 40) {
 					randLoop()
 				} else {
 					for (i=0;i<btns.length;i++) {
 						btns[i].removeAttribute('style')
 					}
 				}
-			}, 200)
+			}, 100)
 		}
 
 		function randomColors() {
@@ -231,7 +237,7 @@
 							console.log("Hint level:", hintLevel)
 							secret = shuffle(vals);	
 							console.log("New secret", secret)
-							pTries.textContent = ""
+							// pTries.textContent = ""
 							randomColors();
 							revealCards(secret, hintLevel)
 							tries = 0;
