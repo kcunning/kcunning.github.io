@@ -145,17 +145,27 @@
 
 		function checkHintLevel(lvl, num) {
 			console.log("Checking hint level", lvl, num)
-			if (lvl == 4) {
-				return 4 // Nothing to do here
+
+			// If they only got 0-2 right, don't change the level
+			if (num < 3) {
+				return lvl
 			}
-			if (num >= 7 & lvl != 3) {
-				return 3
-			} else if (num >= 5 & lvl <= 2) {
-				return 2
-			} else if (num >= 3 & lvl <= 1) {
+
+			// The first level is when you get three right. After that,
+			// it's every two (for now)
+
+			if (num >= 3 & lvl < 1) {
 				return 1
 			}
-			return lvl
+
+			n = Math.floor((num - 3) / 2) + 1 ;
+			console.log("New level might be", n)
+
+			if (n > lvl) {
+				return n
+			} else {
+				return lvl
+			}
 		}
 
 		function revealCards(secret, hintLevel) {
@@ -194,7 +204,7 @@
 			var tries = 0;
 			var maxTries = 8;
 			var pTries = document.getElementById('tries');
-			setTries(tries, maxTries)
+			// setTries(tries, maxTries)
 			maxRight = 0;
 			console.log(secret)
 			revealCards(secret, hintLevel)
@@ -226,9 +236,9 @@
 							revealCards(secret, hintLevel)
 							tries = 0;
 							maxRight = 0;
-							setTries(tries, maxTries)
+							// setTries(tries, maxTries)
 						} else {
-							setTries(tries, maxTries)
+							// setTries(tries, maxTries)
 						}
 						clicked = secret.slice(0, hintLevel)
 					} else if (status == "solved") {
@@ -244,7 +254,7 @@
 	</script>
 </head>
 <body>
-	<p id="tries"></p>
+	<!-- <p id="tries"></p> -->
 	<p>
 		<button class="symbol" id="one">ᚪ</button>
 		<button class="symbol" id="two">ᛉ</button>
