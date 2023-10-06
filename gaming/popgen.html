@@ -2,19 +2,55 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Population Generator, v2.0</title>
 	<script src="/gaming/popgen.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600&display=swap" rel="stylesheet">
+	<style type="text/css">
+		h1, h2 {
+			font-family: "Grenze Gotisch";
+		}
+		table, td {
+			border: 1px solid black;
+		}
+		td {
+			padding: .5em;
+		}
+
+		button {
+			background:darkolivegreen;
+			color: white;
+			border-radius: 5px;
+			padding: .5em;
+			margin: 1em;
+		}
+
+		input, label {
+			margin: .5em;
+		}
+		body {
+			background-color: lightgoldenrodyellow;
+		}
+	</style>
 </head>
 <body>
-	<h1>Population generator, 2.0</h1>
-	<p>This is a work in progress. It will be finished sometime before the heat death of the universe.</p>
-	<button type="button" onclick="getOneFamily(popGenData)">Get one family!</button>
-	<p id="fillme"></p>
-	<form>
-		<label for="popNum">Approximate number of residents:</label><input type="number" min="1" max="10000" name="popNum" id="popNum">
-	</form>
-	<button type="button" onclick="generatePopulation()">Get a CSV town!</button>
-	<p id="loading"></p>
+	<div class="container">
+		<h1>Population generator, 2.0</h1>
+		<p>This is a work in progress. It will be finished sometime before the heat death of the universe.</p>
+		<div class="text-center">
+			<button type="button" onclick="getOneFamily(popGenData)">Get one family!</button>
+		</div>
+		<p id="fillme"></p>
+		<form>
+			<label for="popNum">Approximate number of residents:</label><input type="number" min="1" max="10000" name="popNum" id="popNum">
+		</form>
+		<div class="text-center">
+			<button type="button" onclick="generatePopulation()">Get a CSV town!</button>
+		</div>
+		<p id="loading"></p>
+	<div class="container">
 </body>
 </html>
