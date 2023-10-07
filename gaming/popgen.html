@@ -3,25 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>Population Generator, v2.0</title>
+	<!-- One of these will cause an error. I don't care. My set-up is wonky and I'm done fussing with it. -->
 	<script src="/gaming/popgen.js"></script>
+	<script src="popgen.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600&display=swap" rel="stylesheet">
 	<style type="text/css">
-		h1, h2 {
+		h1, h2, h3 {
 			font-family: "Grenze Gotisch";
 		}
-		table, td {
-			border: 1px solid black;
-		}
-		td {
-			padding: .5em;
-		}
-
+		
 		button {
-			background:darkolivegreen;
+			background:#7C3030;
 			color: white;
 			border-radius: 5px;
 			padding: .5em;
@@ -32,25 +28,51 @@
 			margin: .5em;
 		}
 		body {
-			background-color: lightgoldenrodyellow;
+			background-color: #EADDCA;
+		}
+
+		div.popbox {
+			border-color: #7C3030;
+			border-width: 3px;
+			border-style: solid;
+			border-radius: 1em;
+			margin: 1em;
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
 		<h1>Population generator, 2.0</h1>
-		<p>This is a work in progress. It will be finished sometime before the heat death of the universe.</p>
-		<div class="text-center">
-			<button type="button" onclick="getOneFamily(popGenData)">Get one family!</button>
+		<p>Ever wished you could have the population of an entire fantasy town on hand when your players ask you what the name of the inn is, who's running it, and what they're like? Well, here you go!</p>
+		<p>Originally crafted as a Python script, this version runs 100% online. It generates a town made of families and businesses, compete with names, ancestries, ages, wealth levels, personality traits, and jobs! It even names some of the buildings, so players have something more memorable than "That inn where the bard rolled a natural one to pick up the bartender". For more details, check out my blog post here: [LINK]</p>
+		<h2>The nitty gritty</h2>
+		<ul>
+			<li>This script runs using your machine's juice, so if you generate a large town, there's a chance your browser could crash. My modern machine, didn't choke on one million residents, but if your machine is older, start with a few thousand.</li>
+			<li>The generated file is a CSV, which can be opened with Excel, Google Sheets, Numbers, or whatever spreadsheet software you prefer.</li>
+			<li>The population percentages are based on Pathfinder / Golarion statistics, but should work for most fantasy worlds.</li>
+			<li>Find a problem? Have an idea? <a href="https://docs.google.com/forms/d/e/1FAIpQLScByysv_bvfNb-I7TO5MhoaXsTitylfiJYpGBYpVO8g__KSMg/viewform?usp=sf_link" title="Bug / Suggestions form">Here's a form!</a></li>
+		</ul>
+		<hr>
+		<div class="row">
+			<div class="col popbox">
+				<h2>Get a single family</h2>
+				<div class="text-center">
+					
+					<button type="button" onclick="getOneFamily(popGenData)">Single family</button>
+				</div>
+				<p id="fillme"></p>
+			</div>
+			<div class="col popbox"> 
+				<h2>Get a whole village!</h2>
+				<form>
+					<label for="popNum">Approximate number of residents:</label><input type="number" name="popNum" id="popNum">
+				</form>
+				<div class="text-center">
+					<button type="button" onclick="generatePopulation()">Generate CSV</button>
+				</div>
+				<p id="loading"></p>
+			</div>
 		</div>
-		<p id="fillme"></p>
-		<form>
-			<label for="popNum">Approximate number of residents:</label><input type="number" min="1" max="10000" name="popNum" id="popNum">
-		</form>
-		<div class="text-center">
-			<button type="button" onclick="generatePopulation()">Get a CSV town!</button>
-		</div>
-		<p id="loading"></p>
 	<div class="container">
 </body>
 </html>
