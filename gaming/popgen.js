@@ -291,6 +291,7 @@ var getRandomFamily = function(popGenData, vals) {
         }
         svals['gender'] = gen;
         svals['job'] = initialPerson.job;
+        svals['age'] = initialPerson.age;
         
         spouse = getRandomPerson(popGenData, svals);
         
