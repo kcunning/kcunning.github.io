@@ -1,8 +1,13 @@
 var getRandomItem = function (arr) {
+    // Returns a random item from an array.
     return arr[Math.floor(Math.random()*arr.length)]
 }
 
 var getRandomGroup = function(names, vals) {
+    // Returns a random item from a group, where not every item has an 
+    // equal chance of being selected. Vals are the chances, and should be
+    // one less than the length of `names`. The last value is assumed
+    // to be whatever is left over after adding all the other numbers. 
     var n = Math.round(Math.random() * 100);
     var t = 0;
     for (let i = 0; i < vals.length; i++) {
@@ -15,14 +20,16 @@ var getRandomGroup = function(names, vals) {
 }
 
 var getAncestry = function() {
-    races = ['human', 'elf', 'gnome', 'half-elf', 'halfling', 'half-orc', 'dwarf'];
-    // chances = [70, 4, 3, 6, 7, 4];
-    chances = [7, 4, 3, 60, 7, 4];
+    // Returns a random ancesty. Percents based on:
+    //  https://www.reddit.com/r/Pathfinder_RPG/comments/65yewi/golarion_populations_by_race_the_quickening_v21/
+    races = ['elf', 'gnome', 'half-elf', 'halfling', 'half-orc', 'dwarf', 'human'];
+    chances = [2, 1, 1, 2, 1, 3];
     name = getRandomGroup(races, chances);
     return(name)
 }
 
 var getSES= function() {
+    // Returns a random socioeconomic status. 
     names = ['rich', 'affluent', 'comfortable', 'struggling', 'poor'];
     chances = [1, 10, 20, 40];
     ses = getRandomGroup(names, chances);
@@ -30,6 +37,8 @@ var getSES= function() {
 }
 
 var getGender = function() {
+    // Returns a random apparent gender. Gender-neutral may be agender, androgynous, etc. 
+    //   It's up to the GM.
     genders = ['male', 'female', 'gender-neutral'];
     chances = [45, 45];
     gender = getRandomGroup(genders, chances);
@@ -37,6 +46,7 @@ var getGender = function() {
 }
 
 var getAge = function() {
+    // Returns a random age group.
     age_types = ['elder', 'adult', 'child'];
     chances = [20, 78];
     age = getRandomGroup(age_types, chances);
@@ -44,6 +54,8 @@ var getAge = function() {
 }
 
 var getJob = function(ses) {
+    // Given an SES, returns a random job that suits that SES. 
+    // Children can only ever be children. 
     ses_jobs = {
         'rich': ['nobility', 'land owner'],
         'affluent': ['shopkeep', 'artisan', 'merchant', 'landlord', 'service', 'tavern'],
@@ -84,9 +96,8 @@ var getRandomBuildingName = function(popGenData, vals) {
 }
 
 var getRandomBuilding = function(popGenData, vals={}) {
-    // Types of buildings
+    // Gets a random buildinb based on the job sent. Some buildings get names!
     
-
     // Let's cover the people who live where they work / may not have a home. Everyone else lives in a residence. 
     job_subtypes = {
         'merchant': ['merchant'],
@@ -129,7 +140,14 @@ var getRandomBuilding = function(popGenData, vals={}) {
 }
 
 var getRandomPerson = function(popGenData, vals={}) {
-    
+    // Generates one random person. Values that can be overridden in vals:
+    // anc = The ancesty 
+    // ses = The socioeconomic status
+    // job = The person's job
+    // gender = The person's gender
+    // age = The person's age
+    // last = The person's family name
+
     if ('anc' in vals) {
         anc = vals.anc;
     } else {
@@ -198,10 +216,6 @@ var getRandomPerson = function(popGenData, vals={}) {
         }
     } while (traits.length < 3)
 
-    // var p = document.getElementById('person');
-    // template = `${fn} ${ln}, a ${gender} ${anc} ${age} who is ${traits[0]}, ${traits[1]}, and ${traits[2]}`
-    // p.innerHTML = template;
-
     return {"first": fn, "last": ln, "traits": traits, "anc": anc, "gender": gender, "age": age, "ses": ses, "job": job}
 }
 
@@ -235,7 +249,14 @@ var getChildAnc = function(anc1, anc2='none') {
 }
 
 var getRandomFamily = function(popGenData, vals) {
-    // The logics behind a family
+    // Generates a random family. Some assumptions:
+    //   - The first person determines the family name. This is for ease of keeping families together in the spreadsheet
+    //   if it's sorted.
+    //   - Adults share a 'job'. This is just for ease of sorting and determining houses. Might be updated one day.
+    //   - Children ancestry has a special logic (see `getChildAnc`)
+    //   - Families can have 1-2 adults, and 0-5 children. 
+    //   - The family must live somewhere, even if that's on the street. 
+
     // First, generate a single person. If the person is a child, we switch their age to adult or elder.
     var family = {};
 
@@ -314,11 +335,12 @@ var getRandomFamily = function(popGenData, vals) {
 }
 
 var getOneFamily = function(popGenData) {
+    // A function for generating one family and displaying it on the page
     var family = getRandomFamily(popGenData);
 
     var p = document.getElementById('fillme');
 
-    template = `<h2>${family.adults[0].last} Family</h2>`;
+    template = `<h3>${family.adults[0].last} Family</h3>`;
     p.innerHTML = template;
 
     for (let i=0; i < family.adults.length; i++) {
@@ -349,6 +371,11 @@ var getBuilding = function(popGenData, vals) {
 }
 
 var getRandomSector = function(ses) {
+    // A sector is where a building is located. 
+    // The logic behind this: A house can sometimes be one step up or down from their current SES. So, 
+    //  if your SES is 'middle class', you have a small chance of being in the 'poor' sector (maybe you're saving on rent.
+    //  maybe you're in a house that was passed down) or 'upper middle class' (you've hit on hard times but were previously
+    //  well-to-do, or you're stretching past your means)
     var sectors = ['slums', 'poor', 'middle class', 'upper middle class', 'exclusive', 'private estate']
     var sdict = {
         'poor': 'poor',
@@ -358,11 +385,6 @@ var getRandomSector = function(ses) {
         'rich': 'exclusive'
     }
 
-    // The logic behind this: A house can sometimes be one step up or down from their current SES. So, 
-    //  if your SES is 'middle class', you have a small chance of being in the 'poor' sector (maybe you're saving on rent.
-    //  maybe you're in a house that was passed down) or 'upper middle class' (you've hit on hard times but were previously
-    //  well-to-do, or you're stretching past your means)
-
     var baseSector = sdict[ses];
     var baseIndex = sectors.indexOf(baseSector);
     var possSectors = [sectors[baseIndex], sectors[baseIndex-1], sectors[baseIndex+1]];
@@ -371,13 +393,8 @@ var getRandomSector = function(ses) {
 }
 
 var getRandomPopulation = function(popGenData, vals={'maxPop': 150}) {
-    // First, make the families. Stop when we're within 6 of the max pop
-    // Make sure to add the sector.
-    
-    // Now, make those families a nested array
-    // Each line is one person
-    // For each line: Given, Family, Age, Gender, Ancestry, Building, Subtype, Business Name, SES, Job,
-    //       Traits, Sector
+    // Returns a random population of families. The max number will be fuzzy, stopping somewhere close to the max sent
+    // in vals. If 0 is sent as a max, one family will always be generated. 
 
     var data = [];
     var ppl = 0;
@@ -412,8 +429,7 @@ var getRandomPopulation = function(popGenData, vals={'maxPop': 150}) {
 }
 
 var flattenPerson = function(person, building) {
-    
-    // We only flatten people who have a place they live.
+    // Flattens an single person object to a simple dictionary for ease of putting everyone into the CSV
 
     var traits = person.traits;
 
@@ -439,6 +455,8 @@ var flattenPerson = function(person, building) {
 }
 
 var generatePopulation = function() {
+    // The clicky function for generating a population. Updates the DOM to show a loading message, and
+    // then call sthe CSV function.
     var loading = document.getElementById("loading");
     loading.innerHTML = "Getting your population...";
     
@@ -449,6 +467,8 @@ var generatePopulation = function() {
 }
 
 var generateCSV = function() {
+    // Generates a population based on the values in the DOM, and returns a CSV.
+
     var popNum = document.getElementById("popNum").value;
 
     var data = getRandomPopulation(popGenData, {'maxPop': popNum});
@@ -465,6 +485,7 @@ var generateCSV = function() {
     hiddenElement.click();
 }
 
+// This fetches all the data for the script. Yes, I jammed it all into one JSON. 
 fetch('alldata.json')
     .then((response) => response.json())
     .then(data => {popGenData = data;})
