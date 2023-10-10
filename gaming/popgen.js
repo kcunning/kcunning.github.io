@@ -46,9 +46,9 @@ var getGender = function() {
 }
 
 var getAge = function() {
-    // Returns a random age group.
-    age_types = ['elder', 'adult', 'child'];
-    chances = [20, 78];
+    // Returns a random age group. Children are only created in families!
+    age_types = ['elder', 'adult'];
+    chances = [20];
     age = getRandomGroup(age_types, chances);
     return age
 }
@@ -148,6 +148,7 @@ var getRandomPerson = function(popGenData, vals={}) {
     // age = The person's age
     // last = The person's family name
 
+
     if ('anc' in vals) {
         anc = vals.anc;
     } else {
@@ -194,10 +195,13 @@ var getRandomPerson = function(popGenData, vals={}) {
         fnkey = nameKey + gender[0].toUpperCase() + gender.slice(1,3);
     }
 
+    var person_age = vals['age']
     if ('age' in vals) {
-        age = vals.age;
+        var age = vals.age;
+
     } else {
-        age = getAge();
+
+        var age = getAge();
     }
 
     if ('last' in vals) {
@@ -216,7 +220,10 @@ var getRandomPerson = function(popGenData, vals={}) {
         }
     } while (traits.length < 3)
 
-    return {"first": fn, "last": ln, "traits": traits, "anc": anc, "gender": gender, "age": age, "ses": ses, "job": job}
+    let pvals = {"first": fn, "last": ln, "traits": traits, "anc": anc, "gender": gender, "age": age, "ses": ses, "job": job};
+
+
+    return pvals;
 }
 
 var getChildAnc = function(anc1, anc2='none') {
@@ -248,7 +255,7 @@ var getChildAnc = function(anc1, anc2='none') {
     return ancs[n]
 }
 
-var getRandomFamily = function(popGenData, vals) {
+var getRandomFamily = function(popGenData, vals={}) {
     // Generates a random family. Some assumptions:
     //   - The first person determines the family name. This is for ease of keeping families together in the spreadsheet
     //   if it's sorted.
@@ -256,27 +263,21 @@ var getRandomFamily = function(popGenData, vals) {
     //   - Children ancestry has a special logic (see `getChildAnc`)
     //   - Families can have 1-2 adults, and 0-5 children. 
     //   - The family must live somewhere, even if that's on the street. 
-
     // First, generate a single person. If the person is a child, we switch their age to adult or elder.
-    var family = {};
+    let family = {};
+    if (!('age' in vals)) {
+        vals['age'] = getAge();
 
-    var initialPerson = getRandomPerson(popGenData, vals);
-    
-    if (initialPerson.age == 'child') {
-        c = Math.round(Math.random() * 1);
-        if (c == 1) {
-            initialPerson.age = "elder";
-        } else {
-            initialPerson.age = "adult";
-        }
-        
     }
+
+    const initialPerson = getRandomPerson(popGenData, vals);
+    
     family['adults'] = [initialPerson]
 
     // Now, let's see if they have a spouse. For now, they will share the same age group.
     c = getRandomGroup([true, false], [90]);
     if (c == true) {
-        
+
         svals = {'age': initialPerson.age, 'last': initialPerson.last, 'ses': initialPerson.ses}
 
         g = self.getRandomGroup(['opposite', 'same'], [85]);
@@ -291,17 +292,16 @@ var getRandomFamily = function(popGenData, vals) {
         }
         svals['gender'] = gen;
         svals['job'] = initialPerson.job;
-        svals['age'] = initialPerson.age;
-        
-        spouse = getRandomPerson(popGenData, svals);
+
+
+
+        let spouse = getRandomPerson(popGenData, svals);
         
         family['adults'].push(spouse)
-    } else {
-        
-    }
+    } 
 
     // If the primary person is an adult, give them between zero and five children.
-    if (initialPerson.age = 'adult') {
+    if (initialPerson.age == 'adult') {
         num = Math.round(Math.random()*10/2);    
     } else {
         num = 0
@@ -490,4 +490,3 @@ var generateCSV = function() {
 fetch('alldata.json')
     .then((response) => response.json())
     .then(data => {popGenData = data;})
-    .then((json) => console.log(Object.keys(popGenData)));
