@@ -215,7 +215,8 @@ var getRandomPerson = function(popGenData, vals={}) {
     var traits = []
     do {
         t = getRandomItem(popGenData.traits);
-        if (!(t in traits)) {
+
+        if (!(t in traits) && !(vals['age'] == 'child' && t == 'sexy') ) {
             traits.push(t)
         }
     } while (traits.length < 3)
