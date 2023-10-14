@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600&display=swap" rel="stylesheet">
+	<style type="text/css">
+		h1, h2, h3 {
+			font-family: "Grenze Gotisch";
+		}
+		
+		button {
+			background:#7C3030;
+			color: white
+;			border-radius: 5px;
+			padding: .5em;
+			margin: 1em;
+		}
+
+		input, label {
+			margin: .5em;
+		}
+		body {
+			background-color: #EADDCA;
+		}
+
+		div.popbox {
+			border-color: #7C3030;
+			border-width: 3px;
+			border-style: solid;
+			border-radius: 1em;
+			margin: 1em;
+		}
+
+		textarea {
+			width: 100%;
+			height: 15em;
+		}
+		
+	</style>
+	<title>Adventure Path text cleaner</title>
+	<script type="text/javascript" src="ap_text_cleaner.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Adventure Path text cleaner</h1>
+		<p>This is a text cleaner, specifically written for Paizo Adventures. Features:</p>
+		<ul>
+			<li>Removes line breaks, which are hard coded into PDFs.</li>
+			<li>Puts brackets ( [[ ]] ) around dice rolls.</li>
+			<li>If text has degrees of success, does its best to insert line breaks appropriately.</li>
+		</ul>
+		<div class="row">
+			<div class="col popbox">
+				<label for="basetext">Base text:</label><br>
+				<textarea name="basetext" id="basetext"></textarea>
+			</div>
+			<div class="col popbox">
+				<label for="results">Results:</label><br>
+				<textarea name="results" id="results" onclick="selectText()"></textarea>
+			</div>
+			
+		</div>
+		<button onclick="processText()">Process</button>
+		<button onclick="clearText()">Clear</button>
+	</div>
+</body>
+</html>
