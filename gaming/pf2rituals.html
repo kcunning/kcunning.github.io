@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pathfinder 2e Ritual Calculator</title>
+	<script src="pf2rituals.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600&display=swap" rel="stylesheet">
+	<style type="text/css">
+		h1, h2, h3 {
+			font-family: "Grenze Gotisch";
+		}
+		
+		button {
+			background:#7C3030;
+			color: white;
+			border-radius: 5px;
+		}
+
+		input, label {
+
+		}
+		body {
+			background-color: #EADDCA;
+		}
+
+		div.popbox {
+			border-color: #7C3030;
+			border-width: 3px;
+			border-style: solid;
+			border-radius: 1em;
+			margin: .5em;
+      padding: 1em;
+		}
+
+    div#error {
+      color: #7C3030;
+      font-weight:bolder;
+    }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Pathfinder 2e Ritual Calculator</h1>
+		<div id="explainer">To calculate the DCs for a given ritual rank, select the level. Additionally, you may select any rituals you wish to apply to the roll. The bonuses for most of the feats don't stack, but the script adjusts for this.</div>
+		<div class="row">
+			<div class="col popbox">
+        <h2>Ritual Calculations</h2>
+				<!-- Select level for ritual -->
+        <div>
+  				<label for="ritual_level">Ritual level</label>
+  				<select name="ritual_level" id="ritual_level">
+  					<option value="">---</option>
+  					<option value="1">1</option>
+  					<option value="2">2</option>
+  					<option value="3">3</option>
+  					<option value="4">4</option>
+  					<option value="5">5</option>
+  					<option value="6">6</option>
+  					<option value="7">7</option>
+  					<option value="8">8</option>
+  					<option value="9">9</option>
+  					<option value="10">10</option>
+  				</select>
+  				<button onclick="calcRitualDCs()">Calculate</button>
+        </div>
+        <div id="error"></div>
+				<!-- Output the DCs for the Primary / Secondary Casters -->
+        <div>
+  				<p>DC for primary caster: <span id="primDC"></span></p>
+  				<p>DC for secondary caster(s): <span id="secDC"></span></p>
+        </div>
+        <div id="notes"></div>
+			</div>
+			<div class="col popbox">
+				<h2>Ritual Feats</h2>
+				<div id="rituals">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
