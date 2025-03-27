@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript">
+    function getRandomInt(max) {
+       return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    function showPiles(piles) {
+      for (p in piles) {
+        console.log(piles[p])
+        showPile(piles[p]);
+      }
+      var hr = document.createElement("hr");
+      var resultElem = document.getElementById("results");
+      resultElem.appendChild(hr)
+    }
+
+    function showPile(pile) {
+      var newDiv = document.createElement("div");
+      var txt = `Gold: ${pile.gold}, Silver: ${pile.silver}, Copper: ${pile.copper}`
+      var newCont = document.createTextNode(txt);
+      newDiv.appendChild(newCont);
+
+      var resultElem = document.getElementById("results");
+      resultElem.appendChild(newDiv);
+    }
+
+    function getPile(total) {
+      var g, s, c;
+      g = s = c = 0;
+
+      c = getRandomInt(total+1);
+      total -= c;
+
+      if (total > 10) {
+        s =  getRandomInt(Math.floor(total/10));
+        total -= s*10;
+      }
+
+      if (total > 100) {
+        g = getRandomInt(Math.floor(total/100));
+        total -= g*100;
+      }
+
+      c += total;
+
+      return {gold: g, silver: s, copper:c}
+
+    }
+
+    function calc() {
+      var startGold = document.getElementsByName("gold")[0].value;
+      var numPiles = document.getElementsByName("num")[0].value;
+      var totalCopper = startGold * 100;
+      var piles = [];
+      console.log("sg, np", startGold, numPiles)
+      for (var i=0; i< numPiles-1; i++) {
+        var copper = Math.floor(getRandomInt(totalCopper));
+        totalCopper-= copper;
+        console.log(copper, totalCopper)
+        var pile = getPile(copper);
+        console.log(pile)
+        piles.push(pile)
+        
+      }
+      var pile = getPile(copper)
+      console.log(pile)
+      piles.push(pile)
+      showPiles(piles)
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Gold splitter</h1>
+    <p>Enter in the total number of gold you want the PCs to find in an area, and how many piles you want it in. You will get piles of gold, silver, and copper that will magically add up to the amount you want.</p>
+    <form name="goldsplit">
+      <label for="gold">Gold:</label><input type="text" name="gold"><br>
+      <label for="num">Number of piles: </label><input type="text" name="num"><br>
+      
+    </form>
+    <button onclick="calc()">Submit</button>
+
+    <p id="results">
+
+    </p>
+  </div>
+</body>
+</html>
